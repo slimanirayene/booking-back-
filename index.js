@@ -10,7 +10,7 @@ app.use(bodyParser());
 app.use(cors());
 app.use(express.static("uploads"));
 
-// app.post("/login", SignIn);
+app.post("/login", Login);
 app.post("/signup", SignUp);
 
 mongoose
