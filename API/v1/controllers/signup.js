@@ -1,4 +1,4 @@
-var User = require("../models/users");
+var Patient = require("../models/patients");
 var fs = require("fs");
 
 let SignUp = async (req, res, next) => {
@@ -12,13 +12,13 @@ let SignUp = async (req, res, next) => {
 	let city = req.body.city;
 	let district = req.body.district;
 
-	User.find({ username: user_name }, async (err, results) => {
+	Patient.find({ username: user_name }, async (err, results) => {
 		if (err == null && results.length > 0) {
 			res.status(300).json({ status: "This Account was already created" });
 			console.log(results);
 		} else {
 			try {
-				let doc = new User({
+				let doc = new Patient({
 					email: email,
 					username: user_name,
 					password: password,

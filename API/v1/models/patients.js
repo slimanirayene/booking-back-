@@ -1,10 +1,12 @@
 var mongoose = require("mongoose");
 
-const User = mongoose.model("user", {
+schema = {
 	email: String,
 	username: String,
 	password: String,
 	firstName: String,
 	lastName: String,
-});
-module.exports = User;
+	hasAnAppointment: Boolean,
+};
+
+module.exports = mongoose.models.Patient || mongoose.model("Patient", schema);

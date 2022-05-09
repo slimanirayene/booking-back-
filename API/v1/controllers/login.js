@@ -1,12 +1,12 @@
 let jwt = require("jsonwebtoken");
-let Account = require("../models/users");
+let Patient = require("../models/patients");
 
 const Login = async (req, resp) => {
 	let user = req.body.user_name || "";
 	let password = req.body.password || "";
 	let token_data = undefined;
 
-	Account.find({ user_name: user, password: password }, (err, accounts) => {
+	Patient.find({ user_name: user, password: password }, (err, accounts) => {
 		if (err == null && accounts.length > 0) {
 			let account = accounts[0];
 			console.log(account);
@@ -16,7 +16,7 @@ const Login = async (req, resp) => {
 				user_name: account.username,
 			};
 
-			let token = jwt.sign(token_data, "Foodle token password");
+			let token = jwt.sign(token_data, "sheeeesh");
 
 			resp.status(200).json({
 				status: "succeded",
