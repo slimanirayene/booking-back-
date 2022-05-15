@@ -24,8 +24,7 @@ let SignUp = async (req, res, next) => {
 					password: password,
 					firstName: firstName,
 					lastName: lastName,
-					city: city,
-					district: district,
+					hasAnAppointment: false,
 				});
 				await doc.save();
 				res.status(200).json({ status: "User signed up succefully" });

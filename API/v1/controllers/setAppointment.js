@@ -14,6 +14,7 @@ const SetAppointments = async (req, resp) => {
 		resp.status(403).json({ status: "invalid token" });
 	} else {
 		let user_info = jwt.verify(token, "sheeeesh");
+		let id = user_info.user_id;
 
 		console.log(user_info);
 		Appointment.find({ date: date, hour: hour }, async (err, results) => {

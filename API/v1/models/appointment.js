@@ -1,9 +1,11 @@
 var mongoose = require("mongoose");
 
-const Appointment = mongoose.model("appointment", {
+skeleton = {
 	user: String,
 	date: String,
 	hour: String,
 	comment: String,
-});
-module.exports = Appointment;
+};
+
+module.exports =
+	mongoose.models.Appointment || mongoose.model("Appointment", skeleton);

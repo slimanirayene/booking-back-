@@ -5,11 +5,12 @@ var cors = require("cors");
 var app = express();
 var Login = require("./Api/V1/controllers/login");
 var SignUp = require("./Api/V1/controllers/signup");
-// var DeleteAppointment = require("./Api/V1/controllers/deleteAppointment");
+var DeleteAppointment = require("./Api/V1/controllers/deleteAppointment");
 var SetAppointment = require("./Api/V1/controllers/setAppointment");
 var GetData = require("./Api/V1/controllers/getAppointments");
 var GetInfo = require("./API/v1/controllers/getInfo");
-
+var UpdateAppointmentStatus = require("./API/v1/controllers/updateAppointmentStatus");
+var GetPersonalAppointment = require("./API/v1/controllers/getPersonalAppointment");
 app.use(bodyParser());
 app.use(cors());
 app.use(express.static("uploads"));
@@ -17,9 +18,11 @@ app.use(express.static("uploads"));
 app.post("/login", Login);
 app.post("/signup", SignUp);
 app.post("/add", SetAppointment);
-// app.post("/delete", DeleteAppointment);
+app.post("/delete", DeleteAppointment);
 app.get("/appointments", GetData);
 app.get("/getinfo", GetInfo);
+app.post("/update", UpdateAppointmentStatus);
+app.get("/getappointment", GetPersonalAppointment);
 
 mongoose
 	.connect(
