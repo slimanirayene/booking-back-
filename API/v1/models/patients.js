@@ -6,6 +6,7 @@ schema = {
 	password: String,
 	firstName: String,
 	lastName: String,
+	phoneNumber: String,
 	hasAnAppointment: Boolean,
 };
 

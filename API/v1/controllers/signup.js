@@ -9,8 +9,7 @@ let SignUp = async (req, res, next) => {
 	let password = req.body.password;
 	let firstName = req.body.firstname;
 	let lastName = req.body.lastName;
-	let city = req.body.city;
-	let district = req.body.district;
+	let number = req.body.phoneNumber;
 
 	Patient.find({ username: user_name }, async (err, results) => {
 		if (err == null && results.length > 0) {
@@ -25,6 +24,7 @@ let SignUp = async (req, res, next) => {
 					firstName: firstName,
 					lastName: lastName,
 					hasAnAppointment: false,
+					phoneNumber: number,
 				});
 				await doc.save();
 				res.status(200).json({ status: "User signed up succefully" });
