@@ -1,4 +1,4 @@
-var Appointment = require("../models/appointment");
+let Patient = require("../models/patients");
 let jwt = require("jsonwebtoken");
 
 let DeleteAppointment = async (req, res) => {
@@ -9,16 +9,21 @@ let DeleteAppointment = async (req, res) => {
 	} else {
 		try {
 			console.log(req.body);
-			jwt.verify(token, "sheeeesh");
-			let id = req.body.id || "";
+			let user = jwt.verify(token, "sheeeesh");
+			let id = user.user_id;
 
-			Appointment.deleteOne({ _id: id }).exec((err, text) => {
+			Patient.findOneAndUpdate(
+				{ _id: id },
+				{
+					hasAnAppointment: false,
+				}
+			).exec((err, text) => {
 				if (err == null) {
-					res.status(200);
-					res.json(text);
+					res.status(200).json(text);
+					console.log("profile state changed ");
 				} else {
-					res.status(300);
-					res.send("NOT OK");
+					res.status(300).send("NOT OK");
+					console.log(err);
 				}
 			});
 		} catch (err) {
